@@ -14,7 +14,7 @@ const PrefectureCapitalList = () => {
       <h1>都道府県庁所在地リスト</h1>
       {prefectureCapitals.map(prefectureCapital => {
         return (
-        <div key={prefectureCapital.prefecture}>
+        <div key={prefectureCapital.prefecture} style={{color: 'blue'}}>
           {prefectureCapital.prefecture} ... {prefectureCapital.capital}
         </div>
         );
