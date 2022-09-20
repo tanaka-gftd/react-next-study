@@ -11,8 +11,22 @@ const CountryCapitalList = () => {
       <h1>国の首都リスト</h1>
       {countryCapitals.map(countryCapital => {
         return (
-          <div key={countryCapital.country} style={{color: 'red'}}>
-            {countryCapital.country} ... {countryCapital.capital}
+          <div 
+            key={countryCapital.country}
+            style={{
+              borderRadius: 5,
+              boxShadow: "0 0 3px #555",
+              display: "inline-block",
+              padding: "3px 5px",
+              margin: "3px 5px"
+            }}
+          >
+            <div style={{fontSize: "0.7em", lineHeight: "1em"}}>
+              {countryCapital.country}
+            </div>
+            <div style={{fontSize: "1.1em", fontWeight: "bold", lineHeight: "1em"}}>
+              {countryCapital.capital}
+            </div>
           </div>
         );
       })}
