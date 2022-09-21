@@ -1,5 +1,6 @@
 //useState...React Hooksの一つで、関数コンポーネント内の状態を管理する
-import { useState } from "react";
+//useEffect...React Hooksの一つで、関数コンポーネントのレンダリング時に実行する
+import { useState, useEffect } from "react";
 
 
 const SwitchDemo = () => {
@@ -11,9 +12,26 @@ const SwitchDemo = () => {
   */
   const [pushed, setPushed] = useState(false);
 
+  /* 
+    useEffectは、二つの引数を持つ（第二引数の指定によって、useEffectの実行タイミングが変わる）
+    第一引数は、実行する関数。
+
+    第二引数に値を配列で渡すと、第二引数で指定した変数の値に変化があったときだけ、第一引数で渡した関数が実行されるようになる。
+
+    第二引数を省略すると、レンダリングの度（マウント時、更新時、アンマウント時）に、第一引数の関数が実行される。
+      →stateやpropsに更新があっても、コンポーネントはレンダリングされるので、予期しないタイミングでuseEffectが実行されてしまう。
+      →よって、第二引数を省略するのは非推奨。
+
+    第二引数に空配列[]を渡すと、初回のレンダリング時のみ、useEffectが実行される。
+  */
+  useEffect(() => {
+    document.title = `現在のボタンの状態：${pushed ? "ON" : "OFF"}`;
+  }, [pushed]);
+
   return (
     <main style={{textAlign: "center"}}>
-      <p>押すと色が変わります</p>
+      <p>ボタンを押すと、ボタンの色が変わります（useState）</p>
+      <p>ボタンを押すと、ページタイトルが変わります（useEffect）</p>
       <button
         /* 
           HTMLだと 「onClick=関数名」 でonClickに関数が渡せるが、TSX（JSX）ではこの方法では渡せない。
